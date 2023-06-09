@@ -1,18 +1,19 @@
 <navigation></navigation>
 
 <main class="main">
-    <h1 class="header">I've Heard That...</h1>
-    <div class="text-box">
-        <input 
-            #scrollMe
-            type="text" 
-            class="text-input" 
-            [formControl]="inputControl" 
-            (focus)="userClickedInput()"
-        />
-    </div>
-    <h1 class="header">Is This True?</h1>
-    <div class="text-box">
-        <button class="search-button">Search</button>
-    </div>
+    <form [formGroup]="isThisTrueForm" (ngSubmit)="onSubmit()">
+        <h1 class="header">I've Heard That...</h1>
+        <div class="text-box">
+            <input 
+                type="text"
+                class="text-input" 
+                [formControl]="inputControl" 
+                (focus)="userClickedInput()"
+            />
+        </div>
+        <h1 class="header">Is This True?</h1>
+        <div class="text-box">
+            <button class="search-button" type="submit">Search</button>
+        </div>
+    </form>
 </main>

@@ -1,5 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'home',
@@ -12,14 +14,28 @@ export class HomeComponent implements OnInit {
   public userClickedInputBool = false;
   public exampleInputs = [
     'The sky isn\'t blue',
+    'The sky is blue',
     'The sky is falling',
     'The grass is greener',
-    'The moon is made of cheese',
+    'The moon is cheese',
     'Trump won in 2020',
-    'We\'ve met aliens',
+    'Biden won in 2020',
+    'We\'ve met alien life',
     'AI will soon take over',
-    'Yellow is the best color'
+    'Yellow is the best color',
+    'There\'s life on mars',
+    'The Earth is flat',
+    'The Earth is round'
   ];
+
+  isThisTrueForm = this.formBuilder.group({
+    claim: '',
+  });
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
     this.inputControl.setValue('');
@@ -29,6 +45,12 @@ export class HomeComponent implements OnInit {
   userClickedInput() {
     this.userClickedInputBool = true;
     this.inputControl.setValue('');
+  }
+
+  async onSubmit() {
+    this.router.navigate(['/response/'], {
+      queryParams: { claim: encodeURI(this.inputControl.value)}
+    });
   }
 
   getRandomInt(max: number) {
