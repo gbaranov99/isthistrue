@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "config": "ts-node ./src/scripts/setenv.ts",
+    "start": "npm run config -- --environment=dev && ng serve",
+    "build": "npm run config -- --environment=prod && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -20,9 +21,9 @@
     "@angular/router": "^16.0.0",
     "chatgpt": "^5.2.5",
     "chatgpt-api": "^0.0.6",
-    "dotenv": "^16.1.4",
     "openai": "^3.2.1",
     "ora": "^6.3.1",
+    "process": "^0.11.10",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
@@ -33,12 +34,15 @@
     "@angular/compiler-cli": "^16.0.0",
     "@types/events": "^3.0.0",
     "@types/jasmine": "~4.3.0",
+    "@types/node": "^20.2.6",
+    "dotenv": "^16.1.4",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "~5.0.2"
+    "typescript": "~5.0.2",
+    "yargs": "^17.7.2"
   }
 }

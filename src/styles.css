@@ -18,6 +18,10 @@
     padding-top: 100px;
     height: 100%;
     width: 100%;
+    text-align: center;
+    align-content: center;
+    background: #e7e6e6;
+    overflow:auto;
 }
 
 .header {
@@ -69,23 +73,43 @@
     font-size: 30px;
 }
 
-.about {
+.home-button {
+    margin-top: 100px;
+    height: 50px;
+    width: 400px;
+    background: rgba(147, 147, 147, 0.588);
+    color: rgb(57,55,81);
+    font-weight: bold;
     text-align: center;
-    align-content: center;
-    background: #e7e6e6;
-    overflow:auto;
+    border-style: solid;
+    border-color: rgb(57, 55,81);
+    border-width: 2px;
+    border-radius: 6px;
+    font-size: 30px;
 }
 
-.about-heading {
-    padding-top: 50px;
+.heading {
+    padding-top: 30px;
     font-weight: bold;
     color: rgb(57,55,81);
 }
 
-.about-content {
+.content {
     padding-left: 20%;
     width: 80%;
     padding-bottom: 20%;
     color: rgb(57,55,81);
     text-align: center;
+}
+
+.response-text {
+    padding-top: 20px;
+}
+
+.loading {
+    padding-top: 50px;
+}
+
+.loading-text {
+    padding-top: 30px;
 }

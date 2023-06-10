@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { EXAMPLE_CLAIMS } from 'src/app/constants/exampleClaims';
 
 @Component({
   selector: 'home',
@@ -12,22 +13,7 @@ export class HomeComponent implements OnInit {
 
   public inputControl = new FormControl();
   public userClickedInputBool = false;
-  public exampleInputs = [
-    'The sky isn\'t blue',
-    'The sky is blue',
-    'The sky is falling',
-    'The grass is greener',
-    'The moon is cheese',
-    'Trump won in 2020',
-    'Biden won in 2020',
-    'We\'ve met alien life',
-    'AI will soon take over',
-    'Yellow is the best color',
-    'There\'s life on mars',
-    'The Earth is flat',
-    'The Earth is round'
-  ];
-
+  public exampleClaims = EXAMPLE_CLAIMS;
   isThisTrueForm = this.formBuilder.group({
     claim: '',
   });
@@ -64,8 +50,8 @@ export class HomeComponent implements OnInit {
   async simulateTyping() {
 
     while(true) {
-      const chosenStringIdx = this.getRandomInt(this.exampleInputs.length);
-      const chosenString = this.exampleInputs[chosenStringIdx];
+      const chosenStringIdx = this.getRandomInt(this.exampleClaims.length);
+      const chosenString = this.exampleClaims[chosenStringIdx];
 
       await this.typingWord(chosenString);
       await this.delay(3000);
