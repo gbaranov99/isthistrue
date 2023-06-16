@@ -1,35 +1,41 @@
 <navigation></navigation>
 
 <main class="main">
-  <div class="content">
+  <div [ngClass]="mobileView ? 'mobile-content' : 'desktop-content'">
     <h1 class="heading"> Is This True: "{{claim}}"?</h1>
 
     <div *ngIf="isLoading" class="loading">
       <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
-      <h4 class="loading-text"> Please give ChatGPT up to a minute to process your question. </h4>
+      <p class="loading-text"> Please give ChatGPT up to a minute to process your question. </p>
     </div>
 
     <div *ngIf="!isLoading">
       <div *ngIf="failedProcessingJson" class="response-text">
-        <h4> Sorry about that, ChatGPT did not return a response in an expected format. </h4>
-        <h4> This was the response from ChatGPT: </h4>
-        <h4> {{gptResponse}} </h4>
+        <p> Sorry about that, ChatGPT did not return a response in an expected format. </p>
+        <p> This was the response from ChatGPT: </p>
+        <p> {{gptResponse}} </p>
       </div>
 
-      <div *ngIf="!failedProcessingJson">
+      <div *ngIf="failedApiCall" class="response-text">
+        <p> Sorry about that, ChatGPT encountered an error processing your question. </p>
+        <p> Error Code: </p>
+        <p> {{errResponse}} </p>
+      </div>
+
+      <div *ngIf="!failedProcessingJson && !failedApiCall">
         <h1 class="heading"> {{gptJson['IsThisTrue']}} </h1>
-        <h4> {{gptJson['Justification']}} </h4>
+        <p> {{gptJson['Justification']}} </p>
 
         <h1 class="heading"> Sources Supporting: </h1>
         <li *ngFor="let supporting of gptJson['Supporting'];">
-          <h4> {{supporting}} </h4>
+          <p> {{supporting}} </p>
         </li>
 
         <h1 class="heading"> Sources Opposing: </h1>
         <li *ngFor="let opposing of gptJson['Opposing'];">
-          <h4> {{opposing}} </h4>
+          <p> {{opposing}} </p>
         </li>
 
       </div>

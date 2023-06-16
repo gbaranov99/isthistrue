@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EXAMPLE_CLAIMS } from 'src/app/constants/exampleClaims';
+import { EXAMPLE_CLAIMS } from 'src/app/constants/example-claims';
 
 @Component({
   selector: 'home',

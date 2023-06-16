@@ -16,11 +16,15 @@ export class ChatGptService {
     const promptClaim = promptString.replace("{input_text}", claim);
     
     const completion = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
+      model: "gpt-3.5-turbo-0613",
       messages: [{"role": "system", "content": promptClaim}],
       max_tokens: 1000
     });
-    return completion.data.choices[0].message?.content
-  }
 
+    if (completion?.data?.choices[0]?.message?.content) {
+      return completion.data.choices[0].message?.content;
+    } else {
+      return "OpenAI API encountered an error processing your question";
+    }
+  }
 }

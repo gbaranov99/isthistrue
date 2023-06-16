@@ -14,7 +14,7 @@ based solely on the sources you found and your judgement \
 of how reputable these sources are. \
 
 Provide the following values in a valid JSON format according to the specified keys,
-make sure to format the JSON properly:
+make sure to format the JSON properly and include closing bracket:
 { Key: "Claim", Value: <the given claim> \
 Key: "Supporting", Value: <list of 3 sources supporting the claim cited in MLA format> \
 Key: "Opposing", Value: <list of 3 sources opposing the claim cited in MLA format> \

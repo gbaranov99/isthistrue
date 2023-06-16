@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AboutComponent {
 
+  public mobileView = false;
+
+  constructor() {
+    this.setScreenSize();
+  }
+
+  setScreenSize() {
+    if (screen.width <= 750) {
+      this.mobileView = true;
+    }
+  }
 }

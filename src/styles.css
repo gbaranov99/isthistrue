@@ -24,7 +24,7 @@
     overflow:auto;
 }
 
-.header {
+.home-header {
     text-align: center;
     font-weight: bold;
     margin: 0px;
@@ -94,9 +94,15 @@
     color: rgb(57,55,81);
 }
 
-.content {
+.desktop-content {
     padding-left: 20%;
     width: 80%;
+    padding-bottom: 20%;
+    color: rgb(57,55,81);
+    text-align: center;
+}
+
+.mobile-content {
     padding-bottom: 20%;
     color: rgb(57,55,81);
     text-align: center;
@@ -112,4 +118,8 @@
 
 .loading-text {
     padding-top: 30px;
+}
+
+p {
+    font-size: 20pt;
 }

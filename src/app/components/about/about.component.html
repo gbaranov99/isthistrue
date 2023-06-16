@@ -1,9 +1,9 @@
 <navigation></navigation>
 
-<main class="main" >
-  <div class="content">
+<main class="main">
+  <div [ngClass]="mobileView ? 'mobile-content' : 'desktop-content'">
     <h1 class="heading"> Why did I make this site?</h1>
-    <h4> The spreading of misinformation and objective lies has been a serious problem (especially in the US) for years now. 
+    <p> The spreading of misinformation and objective lies has been a serious problem (especially in the US) for years now. 
         At the same time, AI is becoming increasingly more powerful, intelligent, 
         and generally capable of answering difficult questions with nuanced, well thought out answers.
         I hope advanced AI can help guide humanity towards truth. 
@@ -11,9 +11,9 @@
         I hope to make it clear why a claim is true or false.
         Advanced AI isn't perfect, but it does a good enough job making compelling cases for truth
         that I hope this website will slightly help move humanity in the right direction.
-    </h4>
+    </p>
     <h1 class="heading"> What are some limitations of this site?</h1>
-    <h4> This website currently uses OpenAI's ChatGPT (specifically GPT3.5-turbo) to generate its responses.
+    <p> This website currently uses OpenAI's ChatGPT (specifically GPT3.5-turbo) to generate its responses.
         This is one of the most advanced Large Language Models in the world as of Summer 2023, but even it has its flaws.
         ChatGPT has been known to "hallucinate", where it creates convincing responses that are entirely fictional and have no basis in reality.
         I hope to offset this by having it present sources for why it supports or denies a claim, but this method is not foolproof.
@@ -21,14 +21,14 @@
         I hope my processing of the user's given claim also helps alleviate this concern, but again there are certainly workarounds.
         At its very best, this site should answer questions with humanity's best current understanding of what is true in this world,
         and that is the ideal I will work towards.
-    </h4>
+    </p>
     <h1 class="heading"> What's next for this site?</h1>
-    <h4> In the future, I hope to expand on the sources the site draws from in creating its answers.
+    <p> In the future, I hope to expand on the sources the site draws from in creating its answers.
         Instead of only using ChatGPT, I ideally want to integrate the responses of 
         several Large Language Models' perspectives on the veracity of a claim.
         I am also currently studying Deep Neural Networks and LLMs myself and hope to make more of a contribution to this field.
         Please feel free to reach out to me using the contact tab with any questions or suggestions.
         Thank you!
-    </h4>
+    </p>
   </div>
 </main>

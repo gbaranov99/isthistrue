@@ -10,9 +10,13 @@ import { ChatGptService } from '../../services/chatgpt.service';
 })
 export class ResponseComponent {
 
+  public mobileView = false;
   public claim = "";
-  public gptResponse: any;
+  public gptResponse = "";
   public isLoading = true;
+  public failedProcessingJson = false;
+  public failedApiCall = false;
+  public errResponse = "";
   public gptJson = {
     Claim: '',
     Supporting: [],
@@ -20,7 +24,6 @@ export class ResponseComponent {
     IsThisTrue: false,
     Justification: ''
   };
-  public failedProcessingJson = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,14 +32,29 @@ export class ResponseComponent {
     ) {
     this.route.queryParams.subscribe(params => {
       this.claim = decodeURI(params['claim']);
-  });
+    });
+    this.setScreenSize();
     this.getGptResponse();
   }
 
+  setScreenSize() {
+    if (screen.width <= 750) {
+      this.mobileView = true;
+    }
+  }
+
   async getGptResponse() {
-    this.gptResponse = await this.chatGptService.processClaim(this.claim);
+    this.gptResponse = await this.chatGptService.processClaim(this.claim)
+      .catch((err : Error) => {
+        this.failedApiCall = true;
+        this.errResponse = err.message;
+      }) as string;
+    
     this.isLoading = false;
-    this.processGptResponse();
+
+    if (!this.failedApiCall) {
+      this.processGptResponse();
+    }
   }
 
   processGptResponse() {
@@ -44,11 +62,9 @@ export class ResponseComponent {
       this.gptJson = JSON.parse(this.gptResponse);
     } catch {
       try {
-        // Currently a common bug for ChatGPT to forget to close JSON bracket
-        this.gptResponse = this.gptResponse += "}";
-        this.gptJson = JSON.parse(this.gptResponse);
-      }
-      catch {
+        const gptResponseFormatted = this.gptResponse + "}";
+        this.gptJson = JSON.parse(gptResponseFormatted);
+      } catch {
         this.failedProcessingJson = true;
       }
     }
