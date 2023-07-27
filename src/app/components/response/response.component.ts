@@ -48,24 +48,34 @@ export class ResponseComponent {
       .catch((err : Error) => {
         this.failedApiCall = true;
         this.errResponse = err.message;
+        this.isLoading = false;
       }) as string;
-    
-    this.isLoading = false;
 
     if (!this.failedApiCall) {
       this.processGptResponse();
     }
   }
 
-  processGptResponse() {
+  async processGptResponse() {
     try {
       this.gptJson = JSON.parse(this.gptResponse);
+      this.isLoading = false;
     } catch {
+      // If ChatGPT returns incorrect JSON formatting,
+      // Send the response back to ChatGPT to properly format it
       try {
-        const gptResponseFormatted = this.gptResponse + "}";
-        this.gptJson = JSON.parse(gptResponseFormatted);
+        this.gptResponse = await this.chatGptService.formatJson(this.gptResponse)
+          .catch((err : Error) => {
+            this.failedApiCall = true;
+            this.errResponse = err.message;
+            this.isLoading = false;
+          }) as string;
+
+        this.gptJson = JSON.parse(this.gptResponse);
+        this.isLoading = false;
       } catch {
         this.failedProcessingJson = true;
+        this.isLoading = false;
       }
     }
   }
