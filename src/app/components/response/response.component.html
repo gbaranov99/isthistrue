@@ -32,11 +32,13 @@
         <li *ngFor="let supporting of gptJson['Supporting'];">
           <p> {{supporting}} </p>
         </li>
+        <p *ngIf="gptJson['Supporting'].length === 0"> No souces supporting. </p>
 
         <h1 class="heading"> Sources Opposing: </h1>
         <li *ngFor="let opposing of gptJson['Opposing'];">
           <p> {{opposing}} </p>
         </li>
+        <p *ngIf="gptJson['Opposing'].length === 0"> No souces opposing. </p>
 
       </div>
       <button class="home-button" (click)="navigateHome()">Search Again</button>

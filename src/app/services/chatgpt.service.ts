@@ -27,7 +27,7 @@ export class ChatGptService {
     const openai = new OpenAIApi(configuration);
 
     const completion = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo-0613",
+      model: "gpt-4",
       messages: [{"role": "system", "content": queryPayload}],
       max_tokens: 1000
     });
