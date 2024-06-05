@@ -56,10 +56,24 @@ export class ResponseComponent {
     }
   }
 
+  getSupportOpposeList(gptList : object | string) {
+    if (typeof gptList === 'object') {
+      return JSON.stringify(gptList, null,'\t');
+    } else {
+      return gptList;
+    }
+  }
+
+  async parseResponse() {
+    this.gptResponse = this.gptResponse.replace('```', '');
+    this.gptResponse = this.gptResponse.replace(/json/i, '');
+    this.gptJson = JSON.parse(this.gptResponse);
+    this.isLoading = false;
+  }
+
   async processGptResponse() {
     try {
-      this.gptJson = JSON.parse(this.gptResponse);
-      this.isLoading = false;
+      this.parseResponse();
     } catch {
       // If ChatGPT returns incorrect JSON formatting,
       // Send the response back to ChatGPT to properly format it
@@ -70,9 +84,8 @@ export class ResponseComponent {
             this.errResponse = err.message;
             this.isLoading = false;
           }) as string;
-
-        this.gptJson = JSON.parse(this.gptResponse);
-        this.isLoading = false;
+        
+        this.parseResponse();
       } catch {
         this.failedProcessingJson = true;
         this.isLoading = false;
